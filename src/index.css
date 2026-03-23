@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+  --font-mono: "DM Mono", monospace;
+
+  --color-rojo: #9b1b1b;
+  --color-rojo-hover: #b52525;
+  --color-hueso: #f4efe5;
+  --color-hueso-dark: #eae4d9;
+  --color-madera: #382320;
+  --color-madera-clara: #6a4a3e;
+  --color-dorado: #c4a35e;
+  --color-dorado-claro: #d6bc7a;
+  --color-crema: #fffcf7;
+  --color-verde: #3d7a3a;
+  --color-verde-claro: #4d8a47;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-width: 320px;
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--color-madera);
+    background: var(--color-hueso);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    color: var(--color-madera);
+    line-height: 1.2;
+  }
+
+  ::selection {
+    background: var(--color-rojo);
+    color: var(--color-hueso);
+  }
+}
+
+.skip-to-content {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: var(--color-hueso);
+  background: var(--color-madera);
+}
+
+.skip-to-content:focus {
+  left: 0;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1px;
+  margin: 0 auto;
+  width: min(92%, 1200px);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--color-dorado) 60%, white),
+    transparent
+  );
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.card-shadow {
+  box-shadow: 0 1px 3px rgb(56 35 32 / 0.06), 0 1px 2px rgb(56 35 32 / 0.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .reveal-ready {
+    opacity: 1;
+    transform: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
