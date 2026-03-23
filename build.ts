@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 import plugin from "bun-plugin-tailwind";
 import { existsSync } from "fs";
-import { rm } from "fs/promises";
+import { cp, rm } from "fs/promises";
 import path from "path";
 
 if (process.argv.includes("--help") || process.argv.includes("-h")) {
@@ -156,5 +156,11 @@ const outputTable = result.outputs.map(output => ({
 
 console.table(outputTable);
 const buildTime = (end - start).toFixed(2);
+
+const publicDir = path.join(process.cwd(), "Public");
+if (existsSync(publicDir)) {
+  await cp(publicDir, path.join(outdir as string, "Public"), { recursive: true });
+  console.log("📂 Copied Public/ assets to dist/Public/");
+}
 
 console.log(`\n✅ Build completed in ${buildTime}ms\n`);

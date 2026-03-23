@@ -1,0 +1,10 @@
+{
+  "buildCommand": "bun run build",
+  "installCommand": "bun install",
+  "outputDirectory": "dist",
+  "framework": null,
+  "rewrites": [
+    { "source": "/Public/(.*)", "destination": "/Public/$1" },
+    { "source": "/((?!Public/).*)", "destination": "/index.html" }
+  ]
+}
